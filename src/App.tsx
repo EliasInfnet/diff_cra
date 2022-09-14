@@ -18,6 +18,7 @@ function App() {
   const [timeout, setTimeout] = useState(0)
   const [editcost, setEditCost] = useState(3)
   const [optionChecked, setOptionChecked] = useState(optionCheckedType.raw)
+  const [time, setTime] = useState('')
 
   useEffect(() => {
     dmp.Diff_Timeout = timeout
@@ -35,6 +36,7 @@ function App() {
     }
     diff.forEach(n => console.log(n))
     console.log((ms_end - ms_start) / 1000 + 's')
+    setTime((ms_end - ms_start) / 1000 + 's')
     // document.getElementById('outputdiv').innerHTML = ds + '<BR>Time: ' + (ms_end - ms_start) / 1000 + 's';
   }, [firstText, secondText, timeout, editcost, optionChecked])
 
@@ -104,6 +106,7 @@ function App() {
           </RadioGroup>
         </FormControl>
       </div>
+      {time}
     </div>
   )
 }
