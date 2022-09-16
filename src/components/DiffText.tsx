@@ -11,7 +11,7 @@ enum optionCheckedType {
 const dmp = new diff_match_patch();
 
 function DiffText() {
-  
+
   const [firstText, setFirstText] = useState('')
   const [secondText, setSecondText] = useState('')
   const [timeout, setTimeout] = useState(0)
@@ -22,8 +22,8 @@ function DiffText() {
   const [start, setStart] = useState(new Date().getTime())
   const [end, setEnd] = useState(new Date().getTime())
 
-  const getTime = useCallback(() => setTime((end - start) / 1000 + 's'),[start, end])
-  
+  const getTime = useCallback(() => setTime(end - start + 'ms'), [start, end])
+
 
   useEffect(() => {
     dmp.Diff_Timeout = timeout
@@ -42,10 +42,10 @@ function DiffText() {
       dmp.diff_cleanupEfficiency(diff);
     }
     diff.forEach(n => console.log(n))
-    console.log((ms_end - ms_start) / 1000 + 's')
+    console.log(ms_end - ms_start + 'ms')
 
     // document.getElementById('outputdiv').innerHTML = ds + '<BR>Time: ' + (ms_end - ms_start) / 1000 + 's';
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firstText, secondText, timeout, editcost, optionChecked])
 
 
@@ -115,7 +115,7 @@ function DiffText() {
           </RadioGroup>
         </FormControl>
       </div>
-      {time}
+      <h1> Tempo do diff : {time}</h1>
     </div>
   )
 }
